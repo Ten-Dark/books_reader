@@ -1,18 +1,18 @@
 import {forwardRef, type HTMLAttributes} from "react";
 import clsx from "clsx";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
     variant?: 'default' | 'bordered' | 'elevated',
     padding?: 'none' | 'sm' | 'md' | 'lg',
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
     ({
-        variant = 'default',
-        padding = 'md',
-        className,
-        children,
-        ...props
+         variant = 'default',
+         padding = 'md',
+         className,
+         children,
+         ...props
 
      }, ref) => {
         const baseStyles = 'rounded'
@@ -27,18 +27,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             md: 'px-[20px] py-4',
             lg: 'px-6 py-[20px]',
         }
-    return (
-        <div
-            ref={ref}
-            className={clsx(
-                baseStyles,
-                variants[variant],
-                paddings[padding],
-                className,
-            )}
-            {...props}
-        >
-            {children}
-        </div>
-    );
-});
+        return (
+            <div
+                ref={ref}
+                className={clsx(
+                    baseStyles,
+                    variants[variant],
+                    paddings[padding],
+                    className,
+                )}{...props}>
+                {children}
+            </div>
+        );
+    });
